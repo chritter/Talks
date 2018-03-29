@@ -37,7 +37,7 @@ get_ipython().magic('connect_info')
 # * Serves as analysis, analytics platform but not for software development
 # * Basic cell types are code cells and markdown cells 
 
-# In[31]:
+# In[47]:
 
 
 a = 3
@@ -87,7 +87,7 @@ plt.savefig('line_plot.png')
 # * Use GUI `File` tab
 # * Command line via `nbconvert`
 
-# In[60]:
+# In[35]:
 
 
 get_ipython().run_cell_magic('bash', '', 'jupyter nbconvert CapabilityDemos.ipynb --to python  #--to pdf')
@@ -98,17 +98,19 @@ get_ipython().run_cell_magic('bash', '', 'jupyter nbconvert CapabilityDemos.ipyn
 # * A variety of kernels allow to run Python2/3, Bash, R, Scala: https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
 # * `Kernel` menu
 
-# In[ ]:
-
-
-(/conda, install, -c, r, r-essentials)
-
-
 # * [RNotebook.ipynb](RNotebook.ipynb)
+
+# ### Shell commands
+
+# In[46]:
+
+
+get_ipython().system('ls')
+
 
 # ### Notebook magic
 
-# In[8]:
+# In[37]:
 
 
 get_ipython().run_cell_magic('time', '', '#Other magic commands available:\na = [i for i in range(1000000)]')
@@ -118,13 +120,13 @@ get_ipython().run_cell_magic('time', '', '#Other magic commands available:\na = 
 
 # ### Executing external code
 
-# In[13]:
+# In[38]:
 
 
 get_ipython().magic('run utils.py')
 
 
-# In[14]:
+# In[39]:
 
 
 test_func()
@@ -138,21 +140,19 @@ test_func()
 # 
 # * Password protection through jupyter_notebook_config.py
 
-# In[22]:
+# In[40]:
 
 
-from notebook.auth import passwd
-passwd()
+#from notebook.auth import passwd
+#passwd()
 
 
 # ### Workflow
 
 # * Create notebook/project (github?)
-# * Analysis (random numbers!)
+# * Create reproducable analysis (beware of random numbers)
 # * Add layouts, organization
 # * Publish/Share
-
-# ## Fancy stuff
 
 # ### Deploying Notebooks
 
@@ -160,24 +160,22 @@ passwd()
 # * Run your own Jupyter server in the cloud. 
 # * Rendering on GitHub
 
-# ### Presentations
+# ### Presenting results
 # 
 # * https://damianavila.github.io/RISE/
 # * https://github.com/Anaconda-Platform/nbpresent#install
 
-# Test meei 
+# ### Reading from other Jupyter notebooks
 
-# ## Reading from other Jupyter notebooks
+# Disadvantage: Notebooks are typically separate workflows.
 
-# Disadvantage: Notebooks are typically separate working projects.
-
-# In[17]:
+# In[41]:
 
 
 import json
 
 
-# In[36]:
+# In[42]:
 
 
 f1 = open('DependA.ipynb')
@@ -189,31 +187,25 @@ for l in lines:
     str_dum +=l
 
 
-# In[38]:
+# In[43]:
 
 
 d = json.loads(str_dum)
 
 
-# In[39]:
+# In[44]:
 
 
 d['cells']
 
 
-# In[51]:
+# In[45]:
 
 
 for cell in d['cells']:
     if len(cell['source'])>0:
         if 'velocity' in cell['source'][-1]:
             print(cell['outputs'][0]['data']['text/plain'])
-
-
-# In[62]:
-
-
-get_ipython().system('ls')
 
 
 # ## Adding other content
@@ -248,3 +240,19 @@ display(w)
 
 
 # * Building complex widgets: http://nugrid.github.io/NuPyCEE/webinterface.html
+
+# In[ ]:
+
+
+
+
+
+# ### Notebook Extensions
+# * Community adds new extensions
+# * Many extensions available but beware of compatibility
+
+# In[ ]:
+
+
+
+
